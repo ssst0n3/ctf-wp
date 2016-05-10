@@ -1,9 +1,18 @@
+---
+layout:     post
+title:      "find-to-me"
+subtitle:   "ISCC2016-Basic"
+date:       2016-05-01 20:15:00
+author:     "ssst0n3"
+header-img: "img/post-bg-01.jpg"
+---
 # Find to me  
 `Score: 50` `Type:Basic,crypto`
 
 已知仿射加密变换为c=（11m+8）mod26，试对密文sjoyuxzr解密
 
 ## Writeup
+
 ### 仿射密码
 `C= Ek(m)=(k1m+k2) mod n`
 

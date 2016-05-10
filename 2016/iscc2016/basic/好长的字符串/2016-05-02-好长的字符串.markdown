@@ -1,0 +1,35 @@
+---
+layout:     post
+title:      "好长的字符串"
+subtitle:   "ISCC2016-Basic"
+date:       2016-05-02 22:00:00
+author:     "ssst0n3"
+header-img: "img/post-bg-01.jpg"
+---
+# 好长的字符串
+`score 50` `Type encode`
+
+## 题目
+Vm0wd2QyVkhVWGhVYmxKV1YwZDRXRmxVUm5kVlJscHpXa2M1
+VjFKdGVGWlZNbmhQWVd4YWMxZHViRmROYWxaeVdWZDRZV01
+4WkhGU2JIQk9VbTVDZVZkV1pEUlRNazE0Vkc1T2FWSnVRazlWY
+WtwdlZWWmtWMWt6YUZSTlZUVkpWbTEwYzJGV1NuVlJiR2hYWW
+xSV1JGcFdXbXRXTVZwMFpFWlNUbFp1UWpaV2Fra3hVakZaZVZO
+cmJGSmlWR3hXVm01d1IyUldjRmhsUjBacVZtczFNVmt3WkRSVk1ER
+kZWbXBXVjFKc2NGaFdha3BIVTBaYWRWSnNTbGRTTTAwMQ==
+
+## writeup
+题目给的字符串中，包含大小写字母加数字，以及等号，显然为base64
+
+直接b64decode,发现仍然是base64
+
+循环十次后得出答案
+
+## py
+```
+import base64
+c = "Vm0wd2QyVkhVWGhVYmxKV1YwZDRXRmxVUm5kVlJscHpXa2M1VjFKdGVGWlZNbmhQWVd4YWMxZHViRmROYWxaeVdWZDRZV014WkhGU2JIQk9VbTVDZVZkV1pEUlRNazE0Vkc1T2FWSnVRazlWYWtwdlZWWmtWMWt6YUZSTlZUVkpWbTEwYzJGV1NuVlJiR2hYWWxSV1JGcFdXbXRXTVZwMFpFWlNUbFp1UWpaV2Fra3hVakZaZVZOcmJGSmlWR3hXVm01d1IyUldjRmhsUjBacVZtczFNVmt3WkRSVk1ERkZWbXBXVjFKc2NGaFdha3BIVTBaYWRWSnNTbGRTTTAwMQ=="
+for i in range(10):
+    c = base64.b64decode(c)
+print c
+```
