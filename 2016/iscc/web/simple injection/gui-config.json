@@ -1,0 +1,20 @@
+{
+"configs" : [
+  {
+"server" : "US1.ISS.TF",
+"server_port" : 443,
+"password" : "70821447",
+"method" : "aes-256-cfb",
+"remarks" : ""}
+
+],
+"strategy" : null,
+"index" : 0,
+"global" : false,
+"enabled" : true,
+"shareOverLan" : false,
+"isDefault" : false,
+"localPort" : 1080,
+"pacUrl" : null,
+"useOnlinePac" : false,
+"availabilityStatistics" : false}
