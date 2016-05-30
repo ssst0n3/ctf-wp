@@ -9,7 +9,7 @@ tag:        [tuctf2016,代码审计,文件读取]
 
 `score: 200` `type:web,代码审计，文件读取` `source: tuctf2016`
 
-[原题地址](http://146.148.10.175:1033/LuckyCharms) &emsp;[猜解源码](http://github.com/ssst0n3/ctf-wp/2016/tuctf/web/LuckyCharms)
+[原题地址](http://146.148.10.175:1033/LuckyCharms) &emsp;[猜解源码](http://github.com/ssst0n3/ctf-wp/blob/master/2016/tuctf/web/LuckyCharms)
 &emsp;[题目收集](http://ctf.a306.xyz:8000/LuckyCharms/LuckyCharms)
 
 ## 题目描述
