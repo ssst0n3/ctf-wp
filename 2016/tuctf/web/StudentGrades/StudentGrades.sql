@@ -1,0 +1,14 @@
+create database tuctf2016_StudentGrades;
+use tuctf2016_StudentGrades;
+create table tuctf_grades(name char(20), grade char(2));
+insert into tuctf_grades(name, grade) value("boby","F-");
+insert into tuctf_grades(name, grade) value("angel","B-");
+insert into tuctf_grades(name, grade) value("cube","A-");
+insert into tuctf_grades(name, grade) value("tom","C+");
+create table tuctf_junk(item char(50), owner char(50));
+insert into tuctf_junk(item, owner) value("A random server","Bob");
+create table tuctf_info(item char(50), value char(50));
+insert into tuctf_info(item, value) value("flag","TUCTF{v4ccinate_y0ur_databa5e5}");
+use mysql;
+create user 'studentGrades'@'localhost' identified by 'tttuuuccctttfff';
+grant select on tuctf2016_StudentGrades.* to 'studentGrades'@'localhost';

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script src="md5.js" type="text/javascript"></script>
+<script src="jquery-1.10.2.min.js" type="text/javascript"></script>
+<style type="text/css">
+html,body{
+  margin: 0px;
+  height:100%;
+}
+
+.top{
+  background-color: #F08080;
+  height:100px;
+  width: 100%;
+  color: #fff;
+  line-height: 100px;
+  font-size: 1.17em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.middle{
+    text-align: center;
+}
+
+.main{
+  box-shadow: 1px 1px 5px #888888;
+  width: 700px;
+  margin: 0 auto;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.info{
+  width: 100%;
+  background-color: #fff;
+  border-color:#000000;
+  border-style:solid;
+  border-top-width:0px;
+  border-right-width:0px;
+  border-bottom-width:1px;
+  border-left-width:0px;
+}
+
+button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #169969), color-stop(1, #0b6b06) );
+	background:-moz-linear-gradient( center top, #169969 5%, #0b6b06 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#169969', endColorstr='#0b6b06');
+	background-color:#169969;
+	-webkit-border-top-left-radius:6px;
+	-moz-border-radius-topleft:6px;
+	border-top-left-radius:6px;
+	-webkit-border-top-right-radius:6px;
+	-moz-border-radius-topright:6px;
+	border-top-right-radius:6px;
+	-webkit-border-bottom-right-radius:6px;
+	-moz-border-radius-bottomright:6px;
+	border-bottom-right-radius:6px;
+	-webkit-border-bottom-left-radius:6px;
+	-moz-border-radius-bottomleft:6px;
+	border-bottom-left-radius:6px;
+	text-indent:0;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	width:200px;
+	text-decoration:none;
+	text-align:center;
+}
+button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0b6b06), color-stop(1, #169969) );
+	background:-moz-linear-gradient( center top, #0b6b06 5%, #169969 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0b6b06', endColorstr='#169969');
+	background-color:#0b6b06;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+th{
+   min-width: 500px;
+}
+</style>
+
+</head>
+<body>
+<div class="top">
+  Grade Checking, Inc.
+</div>
+
+<div class="middle">
+  <h1>Welcome Students</h1>
+  <h2>Check your grades here!</h2>
+</div>
+
+<div class="main">
+  <p>Enter name:</p>
+  <input class="info" id="info"/>
+  <br><br>
+  <button id="submit">CHECK MY GRADES!</button>
+  <br><br>
+  <table style="text-align: left;">
+    <tbody id="results">
+      <tr><th>Name</th><th>Grade</th></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+document.getElementById('submit').addEventListener('click',
+  function(event){
+    event.preventDefault();
+    var input = document.getElementById('info');
+    //var query = 'SELECT * from Names where name=\'' + input.value + '\'';
+    var inp_str = input.value;
+    inp_str = inp_str.replace(/\W+/g, " ");
+    var md5_str = hex_md5(inp_str);
+    var send_str = inp_str+' '+md5_str;
+    var post_data = {name: send_str, submit:1};
+    $.ajax({
+        type: "POST",
+        url: "postQuery.php",
+        data: post_data,
+        success: function(data){document.getElementById('results').innerHTML=data;}
+    });
+  }
+);
+
+</script>
+
+</body>
+</html>
