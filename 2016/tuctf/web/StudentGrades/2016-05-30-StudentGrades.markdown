@@ -10,7 +10,7 @@ tag:        [tuctf2016,sql,代码审计]
 `score: 200` `type:web,sql,代码审计` `source: tuctf2016`
 
 
-[原题地址](http://104.199.151.39/index.html) &emsp;[猜解源码]()&emsp;[题目收集](http://ctf.a306.xyz:8001/tuctf2016/StudentGrades/)
+[原题地址](http://104.199.151.39/index.html) &emsp;[猜解源码](https://github.com/ssst0n3/ctf-wp/tree/master/2016/tuctf/web/StudentGrades)&emsp;[题目收集](http://ctf.a306.xyz:8001/tuctf2016/StudentGrades/)
 
 ## 题目描述
 
