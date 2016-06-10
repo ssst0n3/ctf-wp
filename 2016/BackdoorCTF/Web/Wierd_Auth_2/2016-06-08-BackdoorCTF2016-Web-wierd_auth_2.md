@@ -12,7 +12,7 @@ tag:        [BackdoorCTF2016,web,代码审计,php安全]
 
 根据我的猜测，这道题是一道为了比赛而出的题，没有实际的功能。虽然题目考察的知识点不错，但是出题水平不高
 
-[原题地址](https://backdoor.sdslabs.co/challenges/WIERD-AUTH2) &emsp;[猜解源码](https://github.com/ssst0n3/ctf-wp/tree/master/2016/BackdoorCTF/web/wierd_auth_2/source_guess)&emsp;[题目收集](http://ctf.a306.xyz:8001/BackdoorCTF2016/wierd_auth_2/)
+[原题地址](https://backdoor.sdslabs.co/challenges/WIERD-AUTH2) &emsp;[猜解源码](https://github.com/ssst0n3/ctf-wp/tree/master/2016/BackdoorCTF/Web/Wierd_Auth_2/source_guess)&emsp;[题目收集](http://ctf.a306.xyz:8001/BackdoorCTF2016/Wierd_Auth_2/)
 
 ## 题目描述
 
