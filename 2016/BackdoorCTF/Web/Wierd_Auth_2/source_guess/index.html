@@ -1,0 +1,196 @@
+
+<html>
+  <head>
+    <title>
+      WIERD-AUTH-2
+    </title>
+    <script>
+    function c(r) {
+        function n(r, n) {
+            return r << n | r >>> 32 - n
+        }
+        function t(r, n) {
+            var t, e, o, u, a;
+            return o = 2147483648 & r,
+            u = 2147483648 & n,
+            t = 1073741824 & r,
+            e = 1073741824 & n,
+            a = (1073741823 & r) + (1073741823 & n),
+            t & e ? 2147483648 ^ a ^ o ^ u: t | e ? 1073741824 & a ? 3221225472 ^ a ^ o ^ u: 1073741824 ^ a ^ o ^ u: a ^ o ^ u
+        }
+        function e(r, n, t) {
+            return r & n | ~r & t
+        }
+        function o(r, n, t) {
+            return r & t | n & ~t
+        }
+        function u(r, n, t) {
+            return r ^ n ^ t
+        }
+        function a(r, n, t) {
+            return n ^ (r | ~t)
+        }
+        function f(r, o, u, a, f, c, i) {
+            return r = t(r, t(t(e(o, u, a), f), i)),
+            t(n(r, c), o)
+        }
+        function c(r, e, u, a, f, c, i) {
+            return r = t(r, t(t(o(e, u, a), f), i)),
+            t(n(r, c), e)
+        }
+        function i(r, e, o, a, f, c, i) {
+            return r = t(r, t(t(u(e, o, a), f), i)),
+            t(n(r, c), e)
+        }
+        function g(r, e, o, u, f, c, i) {
+            return r = t(r, t(t(a(e, o, u), f), i)),
+            t(n(r, c), e)
+        }
+        function C(r) {
+            for (var n, t = r.length,
+            e = t + 8,
+            o = (e - e % 64) / 64, u = 16 * (o + 1), a = Array(u - 1), f = 0, c = 0; t > c;) n = (c - c % 4) / 4,
+            f = c % 4 * 8,
+            a[n] = a[n] | r.charCodeAt(c) << f,
+            c++;
+            return n = (c - c % 4) / 4,
+            f = c % 4 * 8,
+            a[n] = a[n] | 128 << f,
+            a[u - 2] = t << 3,
+            a[u - 1] = t >>> 29,
+            a
+        }
+        function h(r) {
+            var n, t, e = "",
+            o = "";
+            for (t = 0; 3 >= t; t++) n = r >>> 8 * t & 255,
+            o = "0" + n.toString(16),
+            e += o.substr(o.length - 2, 2);
+            return e
+        }
+        function l(r) {
+            r = r.replace(/rn/g, "n");
+            for (var n = "",
+            t = 0; t < r.length; t++) {
+                var e = r.charCodeAt(t);
+                128 > e ? n += String.fromCharCode(e) : e > 127 && 2048 > e ? (n += String.fromCharCode(e >> 6 | 192), n += String.fromCharCode(63 & e | 128)) : (n += String.fromCharCode(e >> 12 | 224), n += String.fromCharCode(e >> 6 & 63 | 128), n += String.fromCharCode(63 & e | 128))
+            }
+            return n
+        }
+        var d, v, m, S, A, s, p, y, b, w = Array(),
+        B = 7,
+        E = 12,
+        I = 17,
+        L = 22,
+        j = 5,
+        k = 9,
+        q = 14,
+        x = 20,
+        z = 4,
+        D = 11,
+        F = 16,
+        G = 23,
+        H = 6,
+        J = 10,
+        K = 15,
+        M = 21;
+        for (r = l(r), w = C(r), s = 1732584193, p = 4023233417, y = 2562383102, b = 271733878, d = 0; d < w.length; d += 16) v = s,
+        m = p,
+        S = y,
+        A = b,
+        s = f(s, p, y, b, w[d + 0], B, 3614090360),
+        b = f(b, s, p, y, w[d + 1], E, 3905402710),
+        y = f(y, b, s, p, w[d + 2], I, 606105819),
+        p = f(p, y, b, s, w[d + 3], L, 3250441966),
+        s = f(s, p, y, b, w[d + 4], B, 4118548399),
+        b = f(b, s, p, y, w[d + 5], E, 1200080426),
+        y = f(y, b, s, p, w[d + 6], I, 2821735955),
+        p = f(p, y, b, s, w[d + 7], L, 4249261313),
+        s = f(s, p, y, b, w[d + 8], B, 1770035416),
+        b = f(b, s, p, y, w[d + 9], E, 2336552879),
+        y = f(y, b, s, p, w[d + 10], I, 4294925233),
+        p = f(p, y, b, s, w[d + 11], L, 2304563134),
+        s = f(s, p, y, b, w[d + 12], B, 1804603682),
+        b = f(b, s, p, y, w[d + 13], E, 4254626195),
+        y = f(y, b, s, p, w[d + 14], I, 2792965006),
+        p = f(p, y, b, s, w[d + 15], L, 1236535329),
+        s = c(s, p, y, b, w[d + 1], j, 4129170786),
+        b = c(b, s, p, y, w[d + 6], k, 3225465664),
+        y = c(y, b, s, p, w[d + 11], q, 643717713),
+        p = c(p, y, b, s, w[d + 0], x, 3921069994),
+        s = c(s, p, y, b, w[d + 5], j, 3593408605),
+        b = c(b, s, p, y, w[d + 10], k, 38016083),
+        y = c(y, b, s, p, w[d + 15], q, 3634488961),
+        p = c(p, y, b, s, w[d + 4], x, 3889429448),
+        s = c(s, p, y, b, w[d + 9], j, 568446438),
+        b = c(b, s, p, y, w[d + 14], k, 3275163606),
+        y = c(y, b, s, p, w[d + 3], q, 4107603335),
+        p = c(p, y, b, s, w[d + 8], x, 1163531501),
+        s = c(s, p, y, b, w[d + 13], j, 2850285829),
+        b = c(b, s, p, y, w[d + 2], k, 4243563512),
+        y = c(y, b, s, p, w[d + 7], q, 1735328473),
+        p = c(p, y, b, s, w[d + 12], x, 2368359562),
+        s = i(s, p, y, b, w[d + 5], z, 4294588738),
+        b = i(b, s, p, y, w[d + 8], D, 2272392833),
+        y = i(y, b, s, p, w[d + 11], F, 1839030562),
+        p = i(p, y, b, s, w[d + 14], G, 4259657740),
+        s = i(s, p, y, b, w[d + 1], z, 2763975236),
+        b = i(b, s, p, y, w[d + 4], D, 1272893353),
+        y = i(y, b, s, p, w[d + 7], F, 4139469664),
+        p = i(p, y, b, s, w[d + 10], G, 3200236656),
+        s = i(s, p, y, b, w[d + 13], z, 681279174),
+        b = i(b, s, p, y, w[d + 0], D, 3936430074),
+        y = i(y, b, s, p, w[d + 3], F, 3572445317),
+        p = i(p, y, b, s, w[d + 6], G, 76029189),
+        s = i(s, p, y, b, w[d + 9], z, 3654602809),
+        b = i(b, s, p, y, w[d + 12], D, 3873151461),
+        y = i(y, b, s, p, w[d + 15], F, 530742520),
+        p = i(p, y, b, s, w[d + 2], G, 3299628645),
+        s = g(s, p, y, b, w[d + 0], H, 4096336452),
+        b = g(b, s, p, y, w[d + 7], J, 1126891415),
+        y = g(y, b, s, p, w[d + 14], K, 2878612391),
+        p = g(p, y, b, s, w[d + 5], M, 4237533241),
+        s = g(s, p, y, b, w[d + 12], H, 1700485571),
+        b = g(b, s, p, y, w[d + 3], J, 2399980690),
+        y = g(y, b, s, p, w[d + 10], K, 4293915773),
+        p = g(p, y, b, s, w[d + 1], M, 2240044497),
+        s = g(s, p, y, b, w[d + 8], H, 1873313359),
+        b = g(b, s, p, y, w[d + 15], J, 4264355552),
+        y = g(y, b, s, p, w[d + 6], K, 2734768916),
+        p = g(p, y, b, s, w[d + 13], M, 1309151649),
+        s = g(s, p, y, b, w[d + 4], H, 4149444226),
+        b = g(b, s, p, y, w[d + 11], J, 3174756917),
+        y = g(y, b, s, p, w[d + 2], K, 718787259),
+        p = g(p, y, b, s, w[d + 9], M, 3951481745),
+        s = t(s, v),
+        p = t(p, m),
+        y = t(y, S),
+        b = t(b, A);
+        var N = h(s) + h(p) + h(y) + h(b);
+        return N.toLowerCase()
+    }
+    function mySubmit() {
+        for (var r = document.getElementById("password"), n = r.value, t = "", e = 0; e < n.length; e++) {
+            for (var o = c(n[e]), u = 0; u < o.length; u++)"a" != o[e] | "A" != o[e] && (o[e] = o[e] - 1);
+            o = o.replace(/a/g, "/"),
+            o = o.replace(/A/g, "/"),
+            t += o
+        }
+        return t = c(t),
+        r.value = "/" + t + "/",
+        !0
+        // return r.value = "/" + t + "/";
+    }
+    </script>
+  </head>
+  <body>
+    <form action = "submit.php" method = "post" onsubmit="mySubmit()">
+      Enter password to continue:<br />
+      <!-- <input type = "password" name = "password" id = "password" /><br /> -->
+      <input type = "text" name = "password" id = "password" /><br />
+      Enter key to replace:<br />
+      <input type = "text" name = "key" id = "key" /><br />
+      <input type = "submit" value = "Enter" />
+    </form>
+  </body>
+</html>
