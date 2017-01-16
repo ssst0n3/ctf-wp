@@ -14,7 +14,7 @@
 ## Write-up
 ### 1. challenge description
 非常有趣的一道题，网址指向的是一个单纯的登陆页面<br>
-![](images/2016-12-17-seccon2016-web-biscuiti-wp-1.png)
+![](img/2016-12-17-seccon2016-web-biscuiti-wp-1.png)
 
 同时，题目给出了源码`index.php`, `logout.php`
 ### 2. working principle
@@ -191,7 +191,7 @@ function mac($input) {
 `enc_password`字段为空时，`auth()`函数中`openssl_decrypt()`将返回`false`，此时如果输入的`password`字段也为空，则`false==""`成立，`auth()`函数返回`True`。
 
 > `openssl_decrypt()`解`cipher block chaining`时，如果遇到`padding`异常时，会返回`false`, 如下图所示。<br>
-> ![](images/2016-12-17-seccon2016-web-biscuiti-wp-2.png)<br>
+> ![](img/2016-12-17-seccon2016-web-biscuiti-wp-2.png)<br>
 > 因此，如果`enc_password`字段不为空，也可导致其返回`False`。如果`enc_password`可以解密成功，则返回明文，此时输入相同的`password`字段，则`auth()`函数返回`True`。因此存在`padding oracle attack`。
 
 关于`cipher block chaining`对于`padding`是如何处理的，将在`5.2 利用padding oracle attack伪造session`中细说。
@@ -216,7 +216,7 @@ function mac($input) {
 如果最后一个block长度为16， 则在最后追加一个block，为`16`个`0x00`。
 
 `cipher block chaining`解密时，先将密文经过算法解密得到imd(intermediary value), 再与前一个密文块异或得到明文。其中，最后一个明文块必须包含`padding`<br>
-![](images/2016-12-17-seccon2016-web-biscuiti-wp-3.png)
+![](img/2016-12-17-seccon2016-web-biscuiti-wp-3.png)
 
 如果明文中的`padding`不符合上述规则，则抛出异常。
 
@@ -349,4 +349,20 @@ TEMP_CONTAINER_FOR_MULTI_THREADS = -1
 * <http://blog.csdn.net/qq_19876131/article/details/53674972>
 
 ### resources
-* <>
+#### padding oracle attack
+* [Padding Oracle Attack实例分析](http://blog.zhaojie.me/2010/10/padding-oracle-attack-in-detail.html)
+* [Padding oracle attack](https://en.wikipedia.org/wiki/Padding_oracle_attack)
+* [The Padding Oracle Attack - why crypto is terrifying](http://robertheaton.com/2013/07/29/padding-oracle-attack/)
+* [padding oracle攻击原理分析(附带rsa资料)](http://blog.csdn.net/qq_19876131/article/details/52674589)
+* [tools: padbuster](https://www.gdssecurity.com/l/t.php)
+* [我对Padding Oracle Attack的分析和思考](http://www.2cto.com/article/201310/253990.html)
+
+#### php
+* [openssl_decrypt](http://php.net/manual/en/function.openssl-decrypt.php)
+
+#### pkcs#7
+* [关于PKCS5Padding与PKCS7Padding的区别](http://www.cnblogs.com/midea0978/articles/1437257.html)
+* [PKCS #7: Cryptographic Message Syntax](https://tools.ietf.org/html/rfc2315)
+
+#### cipher block chaining
+* [Block cipher mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#CBC)
