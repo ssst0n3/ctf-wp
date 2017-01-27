@@ -138,7 +138,7 @@ sqlite> .quit
 #### 3.3 dockerfile
 为了将自己遇到的题目记录下来，方便共享。这里使用[docker](https://docs.docker.com/engine/getstarted/)，使用的镜像是ubuntu最新版本，使用以下命令即可部署到本地
 ```
-docker pull sysucsa/ctfs:seccon2016_web_biscuiti
+docker pull sysucsa/ctfs_docker:seccon2016_web_biscuiti
 docker run -d -p 8000:80 sysucsa/ctfs:seccon2016_web_biscuiti
 ```
 
